@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import InvInputForm from "./components/invInputForm";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "./components/navBar";
+import Invoice from "./components/invoice";
+import { useContext } from "react";
 
 function App() {
+  const InvoiceContext = React.createContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <InvoiceContext.Provider>
+      <div className="App">
+        {/* <InvInputForm /> */}
+
+        <Invoice />
+      </div>
+    </InvoiceContext.Provider>
   );
 }
 
