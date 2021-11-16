@@ -2,8 +2,9 @@ import "./App.css";
 import InvInputForm from "./components/invInputForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Invoice from "./components/invoice";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 const InvoiceContext = React.createContext();
 
@@ -38,6 +39,8 @@ function App() {
         works,
         payments,
         currency,
+        bankAccount,
+        setBankAccount,
         setCurrency,
         setInvoice,
         setTableOfWorks,
@@ -46,8 +49,10 @@ function App() {
       }}
     >
       <div className="App">
-        {/* <InvInputForm /> */}
-        <Invoice />
+        <Routes>
+          <Route path="/" element={<InvInputForm />} />
+          <Route path="invoice" element={<Invoice />} />
+        </Routes>
       </div>
     </InvoiceContext.Provider>
   );

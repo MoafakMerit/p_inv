@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { InvoiceContext } from "../App";
 
 const InvInputForm = () => {
@@ -10,6 +11,8 @@ const InvInputForm = () => {
     works,
     payments,
     currency,
+    bankAccount,
+    setBankAccount,
     setCurrency,
     setPayments,
     setWorks,
@@ -37,11 +40,18 @@ const InvInputForm = () => {
     });
   };
 
+  const removeWork = (id) => {
+    setWorks((oldWorks) => {
+      let newWorks = oldWorks.filter((work) => work.id !== id);
+      return newWorks;
+    });
+  };
+
   return (
     <React.Fragment>
       <form>
         {/*  */}
-        <div>
+        <div className="divFlex">
           <label htmlFor="billTo" name="billTo" type="text">
             Bill To
           </label>
@@ -53,11 +63,25 @@ const InvInputForm = () => {
             value={invoice.billTo}
             onChange={(e) => setInvoice({ ...invoice, billTo: e.target.value })}
           ></textarea>
-          List of works
-          {works.map((work) => (
-            <tr key={work.id}>{work.descritpion}</tr>
-          ))}
+
+          <ul>
+            {works.map((work) => (
+              <li key={work.id}>
+                {work.descritpion}
+                <button
+                  className="btn m-2 btn-danger"
+                  onClick={() => removeWork(work.id)}
+                >
+                  delete
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button type="button" className="btn m-2 btn-info">
+            {works.length} Translations
+          </button>
         </div>
+
         <div className="inputBox">
           <h3>invoice info</h3>
           <label name="invNo">No.</label>
@@ -89,10 +113,15 @@ const InvInputForm = () => {
         <div className="inputBox">
           {/* the third part */}
           <h3>Translations</h3>
-          <label htmlFor="description" name="description">
+          <label
+            htmlFor="description"
+            name="description"
+            style={{ marginRight: "27px" }}
+          >
             Description:
           </label>
           <input
+            style={{ marginRight: "75px" }}
             id="description"
             className="textInput"
             type="text"
@@ -101,8 +130,8 @@ const InvInputForm = () => {
               setTableOfWorks({ ...tableOfWorks, descritpion: e.target.value })
             }
           ></input>
-          <label htmlFor="volume" name="volume">
-            Volume (target words)
+          <label htmlFor="volume" name="volume" style={{ marginRight: "20px" }}>
+            Volume (target words):
           </label>
           <input
             className="textInput"
@@ -113,10 +142,11 @@ const InvInputForm = () => {
             }
           ></input>
           <br />
-          <label htmlFor="rate" name="rate">
+          <label style={{ marginRight: "75px" }} htmlFor="rate" name="rate">
             Rate:
           </label>
           <input
+            style={{ marginRight: "75px" }}
             className="textInput"
             type="number"
             value={tableOfWorks.rate}
@@ -124,10 +154,11 @@ const InvInputForm = () => {
               setTableOfWorks({ ...tableOfWorks, rate: e.target.value })
             }
           ></input>
-          <label htmlFor="date" name="date">
+          <label htmlFor="date" name="date" style={{ marginRight: "148px" }}>
             Date:
           </label>
           <input
+            style={{ marginRight: "75px" }}
             className="textInput"
             type="Date"
             value={tableOfWorks.date}
@@ -153,13 +184,13 @@ const InvInputForm = () => {
           <br />
           <button
             type="button"
-            class="btn m-2 btn-primary"
+            className="btn btn-primary btn-lg btn-block"
             onClick={handleWorks}
           >
             +
           </button>
         </div>
-        <div class="inputBox">
+        <div className="inputBox">
           <label htmlFor="paymentMade" name="paymentMade">
             Payment Made:
           </label>
@@ -171,6 +202,51 @@ const InvInputForm = () => {
           ></input>
         </div>
       </form>
+      <div className="inputBox">
+        <label htmlFor="bankName" name="bankName">
+          Bank Name:
+        </label>
+        <input
+          className="textInput"
+          type="text"
+          value={bankAccount.bankName}
+          onChange={(e) =>
+            setBankAccount({ ...bankAccount, bankName: e.target.value })
+          }
+        ></input>
+        <label htmlFor="accountNo" name="accountNo">
+          Account No:
+        </label>
+        <input
+          className="textInput"
+          type="text"
+          value={bankAccount.accountNo}
+          onChange={(e) =>
+            setBankAccount({ ...bankAccount, accountNo: e.target.value })
+          }
+        ></input>
+        <label htmlFor="iban" name="iban">
+          IBAN:
+        </label>
+        <input
+          className="textInput"
+          type="text"
+          value={bankAccount.iban}
+          onChange={(e) =>
+            setBankAccount({ ...bankAccount, iban: e.target.value })
+          }
+        ></input>
+      </div>
+      <br />
+
+      <Link to="/invoice">
+        <button
+          className="button"
+          style={{ marginRight: "vertical-align:middle" }}
+        >
+          <span>Create </span>
+        </button>
+      </Link>
     </React.Fragment>
   );
 };

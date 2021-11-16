@@ -5,6 +5,7 @@
 }
 
 .navBar {
+  padding: 0px 35px 0px 35px;
   box-sizing: border-box;
   background-color: white;
   margin-bottom: 20px;
@@ -38,12 +39,12 @@
   height: 40px;
   width: 20%;
   size: 40px;
+  padding: 35px;
 }
 
 .multiline {
   white-space: pre-wrap;
   border: 1px solid gray;
-  width: 400px;
 }
 
 p {
@@ -59,6 +60,7 @@ p {
   border: 2px solid white;
   border-radius: 25px;
   box-shadow: 5px 5px 5px 5px gray;
+  text-align: center;
 }
 
 table td {
@@ -72,4 +74,74 @@ table th {
 
 #tdGray {
   background-color: lightgray;
+}
+#tdGrayWorksTable {
+  background-color: lightgray;
+  text-align: center;
+}
+
+.divBoxInvoice {
+  padding: 20px;
+  margin: 20px;
+  box-sizing: content-box;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+}
+
+.divFlex {
+  padding: 20px;
+  margin: 20px;
+  box-sizing: content-box;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  display: flex;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: green;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 80%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+@media print {
+  #printPageButton {
+    display: none;
+  }
 }

@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
-
 import NavBar from "./navBar";
 import { InvoiceContext } from "../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 
 const Invoice = () => {
   const invoiceData = useContext(InvoiceContext);
-  const { invoice, tableOfWorks, works, payments, currency } = invoiceData;
+  const { invoice, tableOfWorks, works, payments, currency, bankAccount } =
+    invoiceData;
   return (
     <>
       <NavBar />
-      <div>
-        <h6 className="billTo">Bill to</h6>
-        <p className="multiline">{invoice.billTo}</p>
+      <div className="divBoxInvoice">
+        <table>
+          <th id="tdGray">Bill to</th>
+          <tr className="multiline ">{invoice.billTo}</tr>
+        </table>
       </div>
-      <div>
+      {/*  */}
+      <div className="divBoxInvoice">
         <table>
           <tbody>
             <tr>
@@ -31,16 +36,15 @@ const Invoice = () => {
           </tbody>
         </table>
       </div>
-      <div>
-        The works
+      <div className="divBoxInvoice">
         <table>
           <tbody>
             <tr>
-              <th id="tdGray">Description</th>
-              <th id="tdGray">Volume (target words)</th>
-              <th id="tdGray">Rate</th>
-              <th id="tdGray">Amount ({currency})</th>
-              <th id="tdGray">Date</th>
+              <th id="tdGrayWorksTable">Description</th>
+              <th id="tdGrayWorksTable">Volume (target words)</th>
+              <th id="tdGrayWorksTable">Rate</th>
+              <th id="tdGrayWorksTable">Amount ({currency})</th>
+              <th id="tdGrayWorksTable">Date</th>
             </tr>
             {works.map((work) => (
               <tr key={work.id}>
@@ -55,25 +59,42 @@ const Invoice = () => {
         </table>
       </div>
       <section>
-        <div>
+        <div className="divBoxInvoice">
           <h6>Bank Account Detalis:</h6>
+          <h6>Bank Name: {bankAccount.bankName}</h6>
+
+          <h6>Account Number: {bankAccount.accountNo}</h6>
+          <h6>IBAN: {bankAccount.iban}</h6>
         </div>
-        <div>
+        <div className="divBoxInvoice">
           <h6>
             Total:
-            {works.reduce((prev, cur) => {
-              return prev + cur.amount;
-            }, 0)}
+            {Math.floor(
+              works.reduce((prev, cur) => {
+                return prev + cur.amount;
+              }, 0)
+            )}
           </h6>
           <h6>Payment Made: {payments}</h6>
           <h6>
-            Balance Due ({currency}):{" "}
-            {works.reduce((prev, cur) => {
-              return prev + cur.amount;
-            }, 0) - payments}{" "}
+            Balance Due ({currency}):
+            {Math.floor(
+              works.reduce((prev, cur) => {
+                return prev + cur.amount;
+              }, 0)
+            ) - payments}
           </h6>
         </div>
       </section>
+      <button
+        style={{ backgroundColor: "lightblue" }}
+        icon={faFilePdf}
+        className="button"
+        id="printPageButton"
+        onClick={() => window.print()}
+      >
+        <FontAwesomeIcon icon={faFilePdf} />
+      </button>
     </>
   );
 };
