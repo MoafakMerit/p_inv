@@ -13,10 +13,14 @@
 }
 
 .inputBox {
-  margin: 20px 20px 20px 20px;
+  padding: 35px;
+  margin: 35px;
   box-sizing: content-box;
   box-shadow: beige;
-  background-color: lightblue;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-shadow: 5px 5px 5px 5px gray;
 }
 
 .textInput {
@@ -24,8 +28,48 @@
 }
 
 .billTo {
-  border-style: ridge;
-  height: 22px;
+  border: 1px solid gray;
+  width: 400px;
+  background-color: lightgray;
+}
+
+.billToAdress {
+  border: 2px solid lightgray;
+  height: 40px;
   width: 20%;
   size: 40px;
+}
+
+.multiline {
+  white-space: pre-wrap;
+  border: 1px solid gray;
+  width: 400px;
+}
+
+p {
+  border: 2px ridge gray;
+}
+
+.divTable {
+  padding: 35px;
+  margin: 35px;
+  box-sizing: content-box;
+  box-shadow: beige;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+
+table td {
+  border: 1px solid gray;
+  width: 200px;
+}
+table th {
+  border: 1px solid gray;
+  width: 200px;
+}
+
+#tdGray {
+  background-color: lightgray;
 }
