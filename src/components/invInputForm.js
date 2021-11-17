@@ -50,9 +50,12 @@ const InvInputForm = () => {
 
   return (
     <React.Fragment>
+      <nav className="navBarInputForm">
+        <h4>Invoice app</h4>
+      </nav>
       {/*  */}
       <form>
-        <div className="inputBox">
+        <div className="inputBox" style={{ marginTop: "10px" }}>
           <label htmlFor="billTo" name="billTo" type="text">
             Bill To
           </label>

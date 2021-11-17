@@ -16,7 +16,6 @@
 .inputBox {
   padding: 35px;
   margin: 100px;
-
   box-sizing: content-box;
   box-shadow: beige;
   background-color: white;
@@ -150,7 +149,6 @@ table th {
 .divFloat {
   height: 150px;
   width: 50%;
-
   background-color: white;
   padding: 25px;
   box-shadow: 5px 5px 5px 5px gray;
@@ -159,4 +157,29 @@ table th {
   box-sizing: content-box;
   margin: 20px;
   display: inline-block;
+}
+
+.navBarInputForm {
+  background-color: lightskyblue;
+  color: #ffffff;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  text-transform: uppercase;
+}
+
+.tableBank {
+  margin: 40px;
+
+  height: inherit;
+  width: inherit;
+}
+.tableBank a {
+  background-color: gray;
+  width: inherit;
+}
+
+.tabll {
+  border: 2px none white;
 }

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import NavBar from "./navBar";
 import { InvoiceContext } from "../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
 
 const Invoice = () => {
   const invoiceData = useContext(InvoiceContext);
@@ -13,7 +13,18 @@ const Invoice = () => {
       <NavBar />
       <div className="divBoxInvoice">
         <table>
-          <th id="tdGray">Bill to</th>
+          <caption
+            style={{
+              captionSide: "top",
+              width: "50vh",
+
+              background: "gray",
+              color: "black",
+              fontWeight: "bold",
+            }}
+          >
+            Bill To
+          </caption>
           <tr className="multiline ">{invoice.billTo}</tr>
         </table>
       </div>
@@ -41,9 +52,12 @@ const Invoice = () => {
           <tbody>
             <tr>
               <th id="tdGrayWorksTable">Description</th>
-              <th id="tdGrayWorksTable">Volume (target words)</th>
+              <th id="tdGrayWorksTable">
+                Volume <br />
+                (target words)
+              </th>
               <th id="tdGrayWorksTable">Rate</th>
-              <th id="tdGrayWorksTable">Amount ({currency})</th>
+              <th id="tdGrayWorksTable">Amount({currency})</th>
               <th id="tdGrayWorksTable">Date</th>
             </tr>
             {works.map((work) => (
@@ -58,42 +72,73 @@ const Invoice = () => {
           </tbody>
         </table>
       </div>
-      <section>
-        <div className="divBoxInvoice">
-          <h6>Bank Account Detalis:</h6>
-          <h6>Bank Name: {bankAccount.bankName}</h6>
+      <div className="divBoxInvoice">
+        <table>
+          <caption
+            style={{
+              captionSide: "top",
+              width: "75vh",
+              textAlign: "center",
+              background: "gray",
+              color: "black",
+              fontWeight: "bold",
+            }}
+          >
+            Bank Account Detalis
+          </caption>
+          <tr>
+            <th id="tdGray">Bank Account</th>
+            <td>{bankAccount.bankName}</td>
+          </tr>
+          <tr>
+            <th id="tdGray">Account Number</th>
+            <td>{bankAccount.accountNo}</td>
+          </tr>
+          <tr>
+            <th id="tdGray">IBAN</th>
+            <td>{bankAccount.iban}</td>
+          </tr>
+        </table>
+      </div>
+      <div className="divBoxInvoice">
+        <table>
+          <tbody>
+            <tr>
+              <td style={{ border: "none" }}>Total:</td>
+              <td style={{ border: "none" }}>
+                {Math.floor(
+                  works.reduce((prev, cur) => {
+                    return prev + cur.amount;
+                  }, 0)
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td style={{ border: "none" }}>Payment Made:</td>
+              <td style={{ border: "none" }}>{invoice.invDate}</td>
+            </tr>
+            <tr>
+              <td style={{ border: "none" }}>Balance Due ({currency}):</td>
+              <td style={{ border: "none" }}>
+                {Math.floor(
+                  works.reduce((prev, cur) => {
+                    return prev + cur.amount;
+                  }, 0)
+                ) - payments}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-          <h6>Account Number: {bankAccount.accountNo}</h6>
-          <h6>IBAN: {bankAccount.iban}</h6>
-        </div>
-        <div className="divBoxInvoice">
-          <h6>
-            Total:
-            {Math.floor(
-              works.reduce((prev, cur) => {
-                return prev + cur.amount;
-              }, 0)
-            )}
-          </h6>
-          <h6>Payment Made: {payments}</h6>
-          <h6>
-            Balance Due ({currency}):
-            {Math.floor(
-              works.reduce((prev, cur) => {
-                return prev + cur.amount;
-              }, 0)
-            ) - payments}
-          </h6>
-        </div>
-      </section>
       <button
-        style={{ backgroundColor: "lightblue" }}
-        icon={faFilePdf}
+        style={{ backgroundColor: "darkblue" }}
+        icon={faPrint}
         className="button"
         id="printPageButton"
         onClick={() => window.print()}
       >
-        <FontAwesomeIcon icon={faFilePdf} />
+        Print <FontAwesomeIcon icon={faPrint} />
       </button>
     </>
   );
