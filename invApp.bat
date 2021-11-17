@@ -1,0 +1,1 @@
+cd desktop/app/p_inv && npm start
