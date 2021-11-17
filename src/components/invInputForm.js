@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { InvoiceContext } from "../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const InvInputForm = () => {
   const invoiceData = useContext(InvoiceContext);
@@ -49,9 +50,9 @@ const InvInputForm = () => {
 
   return (
     <React.Fragment>
+      {/*  */}
       <form>
-        {/*  */}
-        <div className="divFlex">
+        <div className="inputBox">
           <label htmlFor="billTo" name="billTo" type="text">
             Bill To
           </label>
@@ -63,23 +64,6 @@ const InvInputForm = () => {
             value={invoice.billTo}
             onChange={(e) => setInvoice({ ...invoice, billTo: e.target.value })}
           ></textarea>
-
-          <ul>
-            {works.map((work) => (
-              <li key={work.id}>
-                {work.descritpion}
-                <button
-                  className="btn m-2 btn-danger"
-                  onClick={() => removeWork(work.id)}
-                >
-                  delete
-                </button>
-              </li>
-            ))}
-          </ul>
-          <button type="button" className="btn m-2 btn-info">
-            {works.length} Translations
-          </button>
         </div>
 
         <div className="inputBox">
@@ -188,6 +172,25 @@ const InvInputForm = () => {
             onClick={handleWorks}
           >
             +
+          </button>
+        </div>
+        <div className="inputBox">
+          <ul>
+            {works.map((work) => (
+              <li key={work.id}>
+                {work.descritpion}
+                <button
+                  className="btn m-2 btn-danger"
+                  onClick={() => removeWork(work.id)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                  delete
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button type="button" className="btn m-2 btn-info">
+            {works.length} Translations
           </button>
         </div>
         <div className="inputBox">

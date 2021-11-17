@@ -15,7 +15,8 @@
 
 .inputBox {
   padding: 35px;
-  margin: 35px;
+  margin: 100px;
+
   box-sizing: content-box;
   box-shadow: beige;
   background-color: white;
@@ -112,7 +113,7 @@ table th {
   width: 80%;
   transition: all 0.5s;
   cursor: pointer;
-  margin-left: 50px;
+  margin-left: 100px;
 }
 
 .button span {
@@ -144,4 +145,18 @@ table th {
   #printPageButton {
     display: none;
   }
+}
+
+.divFloat {
+  height: 150px;
+  width: 50%;
+
+  background-color: white;
+  padding: 25px;
+  box-shadow: 5px 5px 5px 5px gray;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-sizing: content-box;
+  margin: 20px;
+  display: inline-block;
 }
