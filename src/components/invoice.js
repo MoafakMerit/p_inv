@@ -115,7 +115,7 @@ const Invoice = () => {
             </tr>
             <tr>
               <td style={{ border: "none" }}>Payment Made:</td>
-              <td style={{ border: "none" }}>{invoice.invDate}</td>
+              <td style={{ border: "none" }}>{payments}</td>
             </tr>
             <tr>
               <td style={{ border: "none" }}>Balance Due ({currency}):</td>
