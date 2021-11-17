@@ -1,1 +1,1 @@
-cd app/p_inv && npm install
+cd p_inv && npm install
